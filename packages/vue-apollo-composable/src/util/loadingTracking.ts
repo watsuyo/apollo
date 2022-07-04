@@ -1,4 +1,4 @@
-import { Ref, watch, onUnmounted, ref, getCurrentInstance, onBeforeUnmount } from 'vue-demi'
+import { Ref, watch, onUnmounted, ref, getCurrentInstance, onBeforeUnmount } from 'vue'
 import type { CurrentInstance } from './types'
 
 export interface LoadingTracking {
@@ -12,7 +12,7 @@ export interface AppLoadingTracking extends LoadingTracking {
 }
 
 export function getAppTracking () {
-  const vm = getCurrentInstance() as CurrentInstance | null
+  const vm = getCurrentInstance()?.proxy as CurrentInstance | null
   const root = vm?.$root ?? vm?.root
   if (!root) {
     throw new Error('Instance $root not found')
